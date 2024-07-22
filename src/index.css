@@ -1,0 +1,97 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.signup{
+  margin-left: 1050px;
+
+}
+.signinlink{
+  display: inline-block;
+  margin-left: 170px;
+}
+.cont{
+  background-color: rgb(223, 236, 236);
+  margin-left: 500px;
+  margin-top: 20px;
+  height: 670px;
+  width: 500px;
+  border-radius: 25px;
+
+}
+.welcome{
+  text-align: center;
+  margin-top: 100px;
+}
+.title{
+  text-align: center;
+  padding: 5px;
+}
+.inpbox{
+  margin-left: 65px;
+  width: 350px;
+
+}
+.labels{
+  margin-left: 65px;
+  font-size: 15px;
+  font-weight: 500;
+}
+.button{
+  margin-left: 65px;
+  width: 350px;
+}
+.types{
+  margin-left: 195px;
+}
+.dropdown{
+  margin-left: 170px;
+}
+.haveacc{
+  margin-left: 65px;
+  font-size: 15px;
+  font-weight: 500;
+}
+.signin{
+  height: 350px;
+  margin-top: 130px;
+}
+.signintitle{
+ padding: 10px;
+}
+.forgetcon{
+  height: 250px;
+  margin-top: 180px;
+}
+.fetchheading{
+  text-align: center;
+  margin-top: 10px;
+}
+.table{
+  margin-top: 20px;
+  width: 1400px;
+  margin-left: 60px;
+}
+.buttons{
+  margin-left: 1100px;
+}
+.adduser{
+  height: 500px;
+  width: 500px;
+  margin-left: 500px;
+  background-color: rgb(223, 236, 236);
+
+}
+.addheading{
+  text-align: center;
+  padding: 20px   ;
+}
+.addbtn{
+  height: 50px;
+  width: 100px;
+  background-color: rgb(87, 40, 226);
+  color: white;
+  font-style: normal;
+}

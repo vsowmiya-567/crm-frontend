@@ -11,18 +11,23 @@ const SignIn = () => {
 
     const navigate = useNavigate()
 
+    const initial = { 
+                      email:'',
+                      password : ''
+                    }
+
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
+    const [token, setToken] = useState() 
     const [errorMessage, setErrorMessage] = useState('')
     const [message, setMessage] = useState('')
-
+    
     const handlesubmit = async(e) => {
         // console.log("button click");
         e.preventDefault()
         try {
 
-            if(!emailValidation(email) || email === '')
+            if(emailValidation(email) || !email === '')
                 return setErrorMessage('please Enter valid email ID')
 
             if(password === ''){
@@ -33,28 +38,31 @@ const SignIn = () => {
                 return setErrorMessage('password should have minimun 6 characters')
             }
 
-            console.log(email);
-            console.log(password);
+            console.log(email,'--------',password);
 
             await axios.post('http://localhost:4000/api/login',{ email, password }) 
-            .then(res =>
-                {
-                    if(res.data.status === 'true'){
-                        alert("login successfully")
-                        navigate('/fetchdata')
+            .then(result =>
+                {   
+                console.log(result);
+                if (result.data.status === 'true') {
+                    setMessage(result.data.message)
+                    console.log(result.data.token);
+                    localStorage.setItem("token",result.data.token)
+                    alert(result.data.message)
+                    navigate('/fetchdata')
                     }
+                    
                 }
             )
             .catch(err =>{
 
-                setMessage(err.res.data.message)
+                setMessage(err.result.data.message)
             })
 
 
         } catch (error) {
-
-            console.log(error);
-        }
+                console.log(error);
+                }
     }
 
     return (
@@ -65,6 +73,7 @@ const SignIn = () => {
 
                 <h3 className='title signintitle'>Sign In</h3>
                 {errorMessage.length > 0 && <div style={{marginLeft:'60px',color:'red'}}>{errorMessage}</div>}
+                {message.length > 0 && <div style={{marginLeft:'60px',color:'red'}}>{message}</div>}
 
 
                 <Form>
@@ -80,9 +89,7 @@ const SignIn = () => {
                             onChange={(e) => { setEmail(e.target.value) }}
                         />
                         {message.length > 0 && (<div style={{marginLeft:'70px',marginTop:'20px',color:'red'}}>{message}</div>)}
-
                     </Form.Group>
-
 
                     <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea2">
                         <Form.Label className='labels'>Password</Form.Label>
@@ -106,7 +113,6 @@ const SignIn = () => {
                 </div>
 
                 <br></br>
-
                 <Link to={'/forgetpass'} className='haveacc signinlink'>Forget Password?</Link>
                 <Link to={'/signup'} className='signinlink'>Sign Up</Link>
             </div>

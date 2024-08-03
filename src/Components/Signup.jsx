@@ -20,14 +20,6 @@ const SignUp = () => {
         address:''
     })
     const [errorMessage,setErrorMessage] = useState('')
-    const [token,setToken] = useState('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjgzYTVhOTU1N2Q0YWZjNDMxYWU0NzYiLCJpYXQiOjE3MjA1MTU1NDh9.gEKYcbDafVeww_A0nuAP3sNkBp-G8WGrwGlBpVuSrzs')
-
-
-    const headers = {
-        Authorization : token,
-       'Accept': 'application/json',
-       'content-Type':'application/json'
-   }
 
     const handlechange = (e)=>{
 
@@ -45,22 +37,23 @@ const SignUp = () => {
 
             if(datas.phone === '')return setErrorMessage('Phone Number is Required')
 
-            if(datas.address === '')return setErrorMessage('Address is Required')
                 
-            if(!emailValidation(datas.email) === '')
-                return setErrorMessage('Please enter valid email ID')
-
-            if(datas.password === ''){
-                return setErrorMessage('Password is required')
-            }
-
-            if(datas.password.length < 6){
-                return setErrorMessage('Password should have 6 characters')
-            }
+                if(!emailValidation(datas.email) === '' || (datas.email) === '')
+                    return setErrorMessage('Please enter valid email ID')
+                
+                if(datas.password === ''){
+                    return setErrorMessage('Password is required')
+                }
+                
+                if(datas.password.length < 6){
+                    return setErrorMessage('Password should have 6 characters')
+                }
+                
+                if(datas.address === '')return setErrorMessage('Address is Required')
 
             console.log("datas",datas);
 
-            await axios.post('http://localhost:4000/api/register',datas,{headers:headers})
+            await axios.post('http://localhost:4000/api/register',datas)
             .then(res => {
                 if(res.data.status === 'true'){
                     alert('Registered successfully')

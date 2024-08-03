@@ -10,10 +10,12 @@ import FetchData from './Components/FetchData.jsx';
 import AddUser from './Components/AddUser.jsx';
 import ConfirmPassword from './Components/ConfirmPassword.jsx'
 import Update from './Components/Update.jsx';
+import axios from 'axios';
 
 const App = () => {
 
-  const [token,setToken] = useState('')
+  // const token = localStorage.getItem("token")
+  // console.log("token",token);
 
   return (
     <div>
@@ -25,12 +27,12 @@ const App = () => {
       <Routes>
           <Route path='/' element={<Dashboard/>}/>
           <Route path='/signup' element={<SignUp/>}/>
-          <Route path='/signin' element={<SignIn/>}/>
+          <Route path='/signin' element={<SignIn />}/>
           <Route path='/forgetpass' element={<Forgetpassword/>}/>
-          <Route path='/fetchdata' element={<FetchData/>}/>
-          <Route path='/confirmpassword/:id/token' element={<ConfirmPassword token = {token}/>}/>
-          <Route path='/adduser' element={<AddUser/>}/>
-          <Route path='/update/:id' element={<Update/>}/>
+          <Route path='/fetchdata' element={<FetchData  />}/>
+          <Route path='/confirmpsw/:id/:token' element={<ConfirmPassword />}/>
+          <Route path='/adduser' element={<AddUser />}/>
+          <Route path='/update/:id' element={<Update />}/>
       </Routes>
       </div>
     </div>

@@ -11,54 +11,57 @@ const AddUser = () => {
 
     const navigate = useNavigate()
 
-    const [name, setName] = useState('')
+    const [fname, setFName] = useState('')
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
     const [address, setAddress] = useState('')
 
     const [errorMessage, setErrorMessage] = useState('')
     const [message, setMessage] = useState('')
-    const [token,setToken]      = useState('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjliYTYwMzE4OTE1MTQxY2Y3Y2Q4MWYiLCJpYXQiOjE3MjE0NzY2NzJ9.sxppInfl9Z9cN9kdaQBDm1PNrIo7mBsylgrmYwu6bOM')
+    const token = localStorage.getItem('token')
 
-    const headers = {
-        Authorization : token,
-       'Accept': 'application/json',
-       'content-Type':'application/json'
-   }
+        const config = {
+            headers:{
+                token:token
+            }
+        }
+       const handlesubmit = async(e) => {
 
-
-    const handlesubmit = async(e) => {
         console.log("button click");
+
+        console.log(fname,email,phone,address);
+
         e.preventDefault()
+
         try {
 
-            if(name === ''){
+            if(!fname){
                 return setErrorMessage('Name is required')
             }
 
-            if(!emailValidation(email) )
+            if(emailValidation(email) )
                 return setErrorMessage('please Enter valid email ID')
 
-            if(phone === ''){
+            if(!phone){
                 return setErrorMessage('Phone is required')
             }
 
-            if (address === ''){
+            if (!address){
                 return setErrorMessage('Address is Required')
             }
 
-            console.log(name,email,phone,address);
-
-            await axios.post('http://localhost:4000/api/adduserdata',{name,email,phone,address },{headers:headers}) 
+            await axios.post('http://localhost:4000/api/adduserdata',{fname,email,phone,address },config) 
             .then(res =>
                 {
                     if(res.data.status === 'true'){
-                        setMessage(res.data.data)
-                        alert("User Added successfully")
+                        // setMessage(res.data.message)
+                        alert(res.data.message)
                         navigate('/fetchdata')
                     }
                 }
+
             )
+            
             .catch(err =>{
 
                 setMessage(err.res.data.message)
@@ -90,7 +93,7 @@ const AddUser = () => {
                             name='name'
                             placeholder="Enter your Name"
                             className='inpbox'
-                            onChange={(e) => { setName(e.target.value) }}
+                            onChange={(e) => { setFName(e.target.value) }}
                         />
                         {message.length > 0 && (<div style={{marginLeft:'70px',marginTop:'20px',color:'red'}}>{message}</div>)}
 

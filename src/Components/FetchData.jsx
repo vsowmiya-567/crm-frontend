@@ -8,33 +8,43 @@ import { Link, useNavigate } from 'react-router-dom';
 const FetchData = () => {
 
     const navigate = useNavigate()
-
     const [datas,setDatas] = useState([])
-    const [token,setToken] = useState('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjliYTYwMzE4OTE1MTQxY2Y3Y2Q4MWYiLCJpYXQiOjE3MjE0NzY2NzJ9.sxppInfl9Z9cN9kdaQBDm1PNrIo7mBsylgrmYwu6bOM')
+    const token = localStorage.getItem("token")
+    console.log('token from fetch',token);
 
-    const headers = {
-         Authorization : token,
-        'Accept': 'application/json',
-        'content-Type':'application/json'
-    }
+    const config = {
+         headers :{
+            token:token
+         } 
+        }
 
     useEffect(()=>{
-         axios.get('http://localhost:4000/api/getall',{headers:headers})
-        .then(res=>{
-          if(res.data.status === 'true'){
-            setDatas(res.data.data)
+         axios.get('http://localhost:4000/api/getall',config)
+        .then(result=>{
+            console.log(result) 
+          if(result.data.status === 'true'){
+            setDatas(result.data.data)
           }
-          console.log(res)
-        })
+      })
         .catch(err=>console.log(err))
+    },[datas])
 
-    },[])
+    const handleDelete = async(id)=>{
+      await axios.delete('http://localhost:4000/api/deletedata/'+id,config)
+      .then(result=> {
+        console.log(result);
+        alert(result.data.message)
+        navigate('/fetchdata')
+      })
+      .catch(error=>console.log(error))
+    }
+
     return (
         <div>
-            <h1 className='fetchheading'>Fetch Data</h1>
+            <h1 className='fetchheading'>User Datas</h1>
             <br></br>
             <div className='buttons'>
-            <Link to='adduser' className='addbtn'>ADD USER</Link>
+            {/* <Link to='/adduser' className='addbtn'>ADD USER</Link> */}
             <Button variant="primary" onClick={()=>{navigate('/adduser')}}>ADD USER</Button>{' '}
             <Button variant="primary" onClick={()=>{navigate('/')}}>Go to Home</Button>{' '}
               
@@ -51,20 +61,29 @@ const FetchData = () => {
         </tr>
       </thead>
       <tbody>
-        {
-            datas.map((item,index)=>{
-                return <tr key={index}>
+        {   
+            datas[0] ?(datas.map((item,index)=>{
+
+              return <tr key={index}>
+
                 <td>{index+1}</td>
                 <td>{item.fname}</td>
                 <td>{item.email}</td>
                 <td>{item.phone}</td>
                 <td>{item.address}</td>
                 <td>
-                  <Button variant="success" onClick={()=>{navigate('/update/${item._id}')}}>Update</Button>{' '}
-                  <Button variant="danger" onClick={()=>{('http://localhost:4000/api/deletedata/:id')}}>Delete</Button>{' '}
+                  <Button variant="success" onClick={()=>{navigate(`/update/${item._id}`)}}>Update</Button>{' '}
+                  <Button variant="danger" onClick={()=>{handleDelete(item._id)}}>Delete</Button>{' '}
                 </td>
               </tr>
-            })
+            })) 
+            : (
+              // <p> No Datas</p>
+              <tr>
+                <td className='td' colSpan={6}>No Datas to Display</td>
+              </tr>
+            )
+            
         }
         
          </tbody>

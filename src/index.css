@@ -67,7 +67,7 @@
 }
 .fetchheading{
   text-align: center;
-  margin-top: 10px;
+  margin-top: 30px;
 }
 .table{
   margin-top: 20px;
@@ -94,4 +94,17 @@
   background-color: rgb(87, 40, 226);
   color: white;
   font-style: normal;
+}
+.td{
+  text-align: center;
+  letter-spacing: 2px;
+}
+.confirmcont{
+  height: 220px;
+  width: 500px;
+  margin-top: 200px;
+}
+.confirmtitle{
+  padding: 10px;
+
 }

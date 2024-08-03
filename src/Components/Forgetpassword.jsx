@@ -11,7 +11,9 @@ const Forgetpassword = () => {
 
     const initial = {email:''}
 
-    const[email,setEmail] =       useState('')
+    const[email,setEmail] = useState('')
+    const[id,setId] = useState('')
+    const[token,setToken] = useState('')
     const[errorMsg,setErrorMsg] = useState('')
     const[message,setMessage] =   useState('')
 
@@ -23,17 +25,22 @@ const Forgetpassword = () => {
             if(email === ''){
                 return setErrorMsg('Email is required')
             }
-            else if(!emailValidation(email)){
+            else if(emailValidation(email)){
                 return setErrorMsg('Please enter valid Email ID')
             }
 
             await axios.post('http://localhost:4000/api/forget-password',{email})
             .then(res =>{
+                    console.log(res);
+                    localStorage.setItem('token',token)
                 if(res.data.status === 'true'){
-                    alert("Reset link is sent to your Mail,Please check it")
+                    setId(res.data.id)
+                    setToken(res.data.token)
+                    alert(res.data.message)
                     setEmail(initial)
                 }
             })
+            console.log('id-----',id,'token-----',token);
         } catch (error) {
             console.log(error);
             setMessage(error.res.data.message)

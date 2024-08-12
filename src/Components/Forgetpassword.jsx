@@ -29,7 +29,7 @@ const Forgetpassword = () => {
                 return setErrorMsg('Please enter valid Email ID')
             }
 
-            await axios.post('http://localhost:4000/api/forget-password',{email})
+            await axios.post('https://crmbackends.onrender.com/api/forget-password',{email})
             .then(res =>{
                     console.log(res);
                     localStorage.setItem('token',token)

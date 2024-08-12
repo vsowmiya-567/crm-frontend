@@ -19,7 +19,8 @@ const FetchData = () => {
         }
 
     useEffect(()=>{
-         axios.get('http://localhost:4000/api/getall',config)
+      async()=>{
+        await axios.get('https://crmbackends.onrender.com/api/getall',config)
         .then(result=>{
             console.log(result) 
           if(result.data.status === 'true'){
@@ -27,10 +28,12 @@ const FetchData = () => {
           }
       })
         .catch(err=>console.log(err))
+      }
+         
     },[datas])
 
-    const handleDelete = async(id)=>{
-      await axios.delete('http://localhost:4000/api/deletedata/'+id,config)
+     const handleDelete = async(id)=>{
+      await axios.delete('https://crmbackends.onrender.com/api/deletedata/'+id,config)
       .then(result=> {
         console.log(result);
         alert(result.data.message)
@@ -78,7 +81,6 @@ const FetchData = () => {
               </tr>
             })) 
             : (
-              // <p> No Datas</p>
               <tr>
                 <td className='td' colSpan={6}>No Datas to Display</td>
               </tr>

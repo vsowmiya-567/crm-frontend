@@ -26,7 +26,7 @@ const ConfirmPassword = () => {
             
         }
 
-        axios.post(`http://localhost:4000/api/reset-passwords/${id}/${token}`,
+        axios.post(`https://crmbackends.onrender.com/api/reset-passwords/${id}/${token}`,
             {newPassword} )
             .then(res =>{
                 console.log(res);

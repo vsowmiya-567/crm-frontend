@@ -12,7 +12,7 @@ const Update = () => {
     const navigate = useNavigate()
     const id = useParams()
     // console.log('id',id);
-    const [name, setName] = useState('')
+    const [fname, setName] = useState('')
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
     const [address, setAddress] = useState('')
@@ -45,7 +45,7 @@ const Update = () => {
         e.preventDefault()
         try {
 
-            if (!name) {
+            if (!fname) {
                 return setErrorMessage('Name is required')
             }
 
@@ -60,9 +60,9 @@ const Update = () => {
                 return setErrorMessage('Address is Required')
             }
 
-            console.log(name, email, phone, address);
+            console.log(fname, email, phone, address);
 
-            await axios.put(`http://localhost:4000/api/update/${id.id}`, { name, email, phone, address }, config)
+            await axios.put(`https://crmbackends.onrender.com/api/update/${id.id}`, { fname, email, phone, address }, config)
                 .then(result => {
                     console.log('result',result);
                     if (result.data.status === 'true') {
@@ -100,7 +100,7 @@ const Update = () => {
                             name='name'
                             placeholder="Enter your Name"
                             className='inpbox'
-                            value={name}
+                            value={fname}
                             onChange={(e) => { setName(e.target.value) }}
                         />
                         {message.length > 0 && (<div style={{ marginLeft: '70px', marginTop: '20px', color: 'red' }}>{message}</div>)}

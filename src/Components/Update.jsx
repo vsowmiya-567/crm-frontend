@@ -19,8 +19,10 @@ const Update = () => {
 
     const [errorMessage, setErrorMessage] = useState('')
     const [message, setMessage] = useState('')
+
     const token = localStorage.getItem('token')
-    console.log('token from update',token);
+
+    // console.log('token from update',token);
 
     const config = {
         headers :{
@@ -29,7 +31,8 @@ const Update = () => {
        }
 
         useEffect(() => {
-        axios.get(`http://localhost:4000/api/getby/${id.id}`,config)
+                        
+        axios.get(`https://crmbackends.onrender.com/api/getby/${id.id}`,config)
             .then(result => {
                 console.log(result);
                 setName(result.data.data.fname)

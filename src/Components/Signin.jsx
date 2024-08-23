@@ -45,7 +45,7 @@ const SignIn = () => {
                 {   
                 console.log(result);
                 if (result.data.status === 'true') {
-                    setMessage(result.data.message)
+                    // setMessage(result.data.message)
                     console.log(result.data.token);
                     localStorage.setItem("token",result.data.token)
                     alert(result.data.message)

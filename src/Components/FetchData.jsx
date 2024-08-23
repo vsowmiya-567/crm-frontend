@@ -19,7 +19,9 @@ const FetchData = () => {
         }
 
     useEffect(()=>{
-      async()=>{
+      
+      const getData = async()=>{
+
         await axios.get('https://crmbackends.onrender.com/api/getall',config)
         .then(result=>{
             console.log(result) 
@@ -29,8 +31,8 @@ const FetchData = () => {
       })
         .catch(err=>console.log(err))
       }
-         
-    },[datas])
+        getData() 
+    },([datas]))
 
      const handleDelete = async(id)=>{
       await axios.delete('https://crmbackends.onrender.com/api/deletedata/'+id,config)

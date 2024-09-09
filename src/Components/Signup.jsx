@@ -53,7 +53,7 @@ const SignUp = () => {
 
             console.log("datas",datas);
 
-            await axios.post('http://localhost:4000/api/register',datas)
+            await axios.post('https://crmbackends.onrender.com/api/register',datas)
             .then(res => {
                 if(res.data.status === 'true'){
                     alert('Registered successfully')

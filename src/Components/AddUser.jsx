@@ -50,7 +50,7 @@ const AddUser = () => {
                 return setErrorMessage('Address is Required')
             }
 
-            await axios.post('http://localhost:4000/api/adduserdata',{fname,email,phone,address },config) 
+            await axios.post('https://crmbackends.onrender.com/api/adduserdata',{fname,email,phone,address },config) 
             .then(res =>
                 {
                     if(res.data.status === 'true'){

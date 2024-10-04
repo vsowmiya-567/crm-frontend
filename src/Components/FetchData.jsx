@@ -14,14 +14,14 @@ const FetchData = () => {
 
     const config = {
          headers :{
-            token:token
+            "Authorization":`Bearer ${token}`
          } 
         }
 
     useEffect(()=>{
       
       const getData = async()=>{
-
+        
         await axios.get('https://crmbackends.onrender.com/api/getall',config)
         .then(result=>{
             console.log(result) 

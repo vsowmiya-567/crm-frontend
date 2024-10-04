@@ -17,7 +17,8 @@ const SignUp = () => {
         phone:'',
         email:'',
         password:'',
-        address:''
+        address:'',
+        role:''
     })
     const [errorMessage,setErrorMessage] = useState('')
 
@@ -27,7 +28,10 @@ const SignUp = () => {
 
         setDatas({...datas,[name]:value})
     }
-
+    const handleSelect = (eventKey)=>{
+        setDatas({...datas,role:eventKey})
+    }
+       
     const handlesubmit = async (e)=>{
         try {
 
@@ -134,14 +138,19 @@ const SignUp = () => {
         </Form.Group>
     </Form>
        
-        <div>
-            <h6 className='types'>Type of User</h6>
-                <DropdownButton id="dropdown-basic-button" className='dropdown' title="Select User Type">
-                    <Dropdown.Item href="#/action-1">Admin</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">Manager</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">Employee</Dropdown.Item>
-                </DropdownButton>
-        </div>
+            <div>
+                <h6 className='types' >Type of User</h6>
+                <Dropdown onSelect={handleSelect}>
+                    <Dropdown.Toggle variant="success" id="dropdown-basic">
+                        {datas.role || 'Select a role'}
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                        <Dropdown.Item eventKey="Admin" href="#/action-1" >Admin</Dropdown.Item>
+                        <Dropdown.Item eventKey="Manager" href="#/action-2">Manager</Dropdown.Item>
+                        <Dropdown.Item eventKey="Employee" href="#/action-3">Employee</Dropdown.Item>
+                    </ Dropdown.Menu>
+                </Dropdown>
+            </div>
         <br></br>
             <div>
                 <Button variant="primary" type='submit' className='button' onClick={handlesubmit}>Sign Up</Button>

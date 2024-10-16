@@ -11,7 +11,6 @@ import AddUser from './Components/AddUser.jsx';
 import ConfirmPassword from './Components/ConfirmPassword.jsx'
 import Update from './Components/Update.jsx';
 import axios from 'axios';
-import crmImage from '../src/images/img-1.jpg';
 
 const App = () => {
 

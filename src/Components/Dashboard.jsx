@@ -4,6 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useNavigate } from 'react-router-dom';
 
+
 const Dashboard = () => {
 
     const navigate = useNavigate()
@@ -31,9 +32,7 @@ const Dashboard = () => {
                 </Container>
             </Navbar>
             <div>
-                {/* <div>
-                     <img src={crmImage} alt='image' />
-                </div> */}
+                
             <h1 className='welcome'>Welcome to CRM</h1>
 
             </div>

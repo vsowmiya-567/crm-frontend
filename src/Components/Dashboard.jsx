@@ -31,6 +31,9 @@ const Dashboard = () => {
                 </Container>
             </Navbar>
             <div>
+                {/* <div>
+                     <img src={crmImage} alt='image' />
+                </div> */}
             <h1 className='welcome'>Welcome to CRM</h1>
 
             </div>

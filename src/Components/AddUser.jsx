@@ -20,16 +20,25 @@ const AddUser = () => {
     const [message, setMessage] = useState('')
     const token = localStorage.getItem('token')
 
-        const config = {
+        // const config = {
+        //     headers:{
+        //         token:token
+        //     }
+        // }
+        const config ={
             headers:{
-                token:token
+                'Authorization':`Bearer${token}`,
+                'Content-Type': 'application/json'
             }
         }
+       const handleCancel = ()=>{
+        navigate('/fetchdata')
+       }
        const handlesubmit = async(e) => {
 
-        console.log("button click");
+        // console.log("button click");
 
-        console.log(fname,email,phone,address);
+        console.log('Sending data----:',fname,email,phone,address);
 
         e.preventDefault()
 
@@ -52,6 +61,7 @@ const AddUser = () => {
 
             await axios.post('https://crmbackends.onrender.com/api/adduserdata',{fname,email,phone,address },config) 
             .then(res =>
+                
                 {
                     if(res.data.status === 'true'){
                         // setMessage(res.data.message)
@@ -143,6 +153,13 @@ const AddUser = () => {
                         type='submit'
                         className='button'>
                          Add 
+                    </Button>
+                    <Button
+                        onClick={handleCancel}
+                        variant="primary"
+                        type='submit'
+                        className='cancelbtn'>
+                         cancel 
                     </Button>
                 </div>
 

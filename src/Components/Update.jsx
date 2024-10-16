@@ -24,11 +24,17 @@ const Update = () => {
 
     // console.log('token from update',token);
 
-    const config = {
-        headers :{
-           token:token
-        } 
-       }
+    // const config = {
+    //     headers :{
+    //        token:token
+    //     } 
+    //    }
+    const config ={
+        headers:{
+            'Authorization':`Bearer ${token}`,
+            'Content-Type': 'application/json'
+        }
+    }
 
         useEffect(() => {
                         

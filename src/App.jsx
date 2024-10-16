@@ -11,6 +11,7 @@ import AddUser from './Components/AddUser.jsx';
 import ConfirmPassword from './Components/ConfirmPassword.jsx'
 import Update from './Components/Update.jsx';
 import axios from 'axios';
+import crmImage from '../src/images/img-1.jpg';
 
 const App = () => {
 
@@ -19,7 +20,7 @@ const App = () => {
 
   return (
     <div>
-
+      
       {/* <h1>App</h1> */}
       {/* <Navbar/>*/}
 
@@ -34,6 +35,7 @@ const App = () => {
           <Route path='/adduser' element={<AddUser />}/>
           <Route path='/update/:id' element={<Update />}/>
       </Routes>
+      
       </div>
     </div>
   );

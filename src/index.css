@@ -3,7 +3,6 @@
   padding: 0px;
   box-sizing: border-box;
 }
-
 .signup{
   margin-left: 1050px;
 
@@ -43,6 +42,11 @@
   margin-left: 65px;
   width: 350px;
 }
+.cancelbtn{
+  margin-left: 65px;
+  width: 350px;
+  margin-top: 10px;
+}
 .types{
   margin-left: 195px;
 }
@@ -78,7 +82,7 @@
   margin-left: 1100px;
 }
 .adduser{
-  height: 500px;
+  height: 550px;
   width: 500px;
   margin-left: 500px;
   background-color: rgb(223, 236, 236);
